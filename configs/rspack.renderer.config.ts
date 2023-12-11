@@ -2,7 +2,7 @@ import { Configuration } from '@rspack/core';
 import ReactRefreshPlugin from '@rspack/plugin-react-refresh';
 
 import { isDevelopment, isProduction } from './rspack.env';
-import { optimization } from './rspack.optimia';
+import { optimization } from './rspack.optimization';
 import { plugins } from './rspack.plugins';
 import { rules } from './rspack.rules';
 import { pathResolve } from './utils';

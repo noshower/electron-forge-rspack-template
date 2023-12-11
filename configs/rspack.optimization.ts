@@ -18,7 +18,8 @@ export const optimization: Configuration['optimization'] = {
       },
     },
   },
-  runtimeChunk: {
-    name: 'runtime',
-  },
+  // add runtimeChunk config, resulting in production env can't load preload.js
+  // runtimeChunk: {
+  //   name: 'runtime',
+  // },
 };
