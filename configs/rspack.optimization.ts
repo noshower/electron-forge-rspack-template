@@ -1,6 +1,9 @@
 import type { Configuration } from '@rspack/core';
+import { rspack } from '@rspack/core';
 
-export const optimization: Configuration['optimization'] = {
+import { isProduction } from './rspack.env';
+
+const optimization: Configuration['optimization'] = {
   splitChunks: {
     cacheGroups: {
       vendors: {
@@ -18,8 +21,16 @@ export const optimization: Configuration['optimization'] = {
       },
     },
   },
+  chunkIds: isProduction ? 'deterministic' : 'named',
   // add runtimeChunk config, resulting in production env can't load preload.js
   // runtimeChunk: {
   //   name: 'runtime',
   // },
 };
+
+if (isProduction) {
+  optimization.minimize = true;
+  optimization.minimizer = [new rspack.SwcJsMinimizerRspackPlugin(), new rspack.SwcCssMinimizerRspackPlugin()];
+}
+
+export { optimization };
