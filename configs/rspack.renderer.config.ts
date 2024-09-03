@@ -37,16 +37,42 @@ if (isDevelopment) {
 export const rendererConfig: Configuration = {
   devtool: isProduction ? false : 'eval-cheap-module-source-map',
   module: {
+    generator: {
+      'css/auto': {
+        exportsOnly: false,
+        exportsConvention: 'as-is',
+        localIdentName: isProduction ? '[hash]' : '[uniqueName]-[id]-[local]',
+      },
+      css: {
+        exportsOnly: false,
+      },
+      'css/module': {
+        exportsOnly: false,
+        exportsConvention: 'as-is',
+        localIdentName: isProduction ? '[hash]' : '[uniqueName]-[id]-[local]',
+      },
+    },
+    parser: {
+      'css/auto': {
+        namedExports: false,
+      },
+      css: {
+        namedExports: false,
+      },
+      'css/module': {
+        namedExports: false,
+      },
+    },
     rules,
   },
   plugins: rendererPlugins,
   optimization: isProduction ? optimization : undefined,
   resolve: {
-    tsConfigPath: pathResolve('tsconfig.json'),
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+    tsConfig: pathResolve('tsconfig.json'),
   },
+  ignoreWarnings: [/Conflicting order/],
   experiments: {
-    rspackFuture: {
-      newResolver: true,
-    },
+    css: true,
   },
 };

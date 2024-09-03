@@ -30,7 +30,7 @@ const optimization: Configuration['optimization'] = {
 
 if (isProduction) {
   optimization.minimize = true;
-  optimization.minimizer = [new rspack.SwcJsMinimizerRspackPlugin(), new rspack.SwcCssMinimizerRspackPlugin()];
+  optimization.minimizer = [new rspack.SwcJsMinimizerRspackPlugin(), new rspack.LightningCssMinimizerRspackPlugin()];
 }
 
 export { optimization };

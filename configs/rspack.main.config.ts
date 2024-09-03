@@ -17,12 +17,7 @@ export const mainConfig: Configuration = {
   },
   plugins,
   resolve: {
-    tsConfigPath: pathResolve('tsconfig.json'),
-  },
-  experiments: {
-    rspackFuture: {
-      newResolver: true,
-    },
+    tsConfig: pathResolve('tsconfig.json'),
   },
   devtool: isProduction ? false : 'eval-cheap-module-source-map',
 };
